@@ -49,7 +49,7 @@ jobs:
     - name: Build
       run: |
         cd ~/go/src/github.com/${GITHUB_REPOSITORY}
-        go build -o nvidiagpubeat -ldflags "-X main.qualifier=syshim"
+        CGO_ENABLED=0 COOS=linux GOARCH=amd64 go build -o nvidiagpubeat -ldflags "-s -X main.qualifier=syshim"
         cp nvidiagpubeat ~/release/nvidiagpubeat
         cd ~
         pwd
